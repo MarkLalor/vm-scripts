@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+echo "Reenabling main display with xrandr"
+xrandr --output HDMI-0 --mode "2560x1440" --rate 60 --right-of DP-0
+
+echo "Reenabling Barrier server"
+synergy-core --server

@@ -1,0 +1,6 @@
+echo "Killing Barrier server if running on this computer"
+pkill -e -f "barriers"
+
+echo "Disabling output device with xrandr"
+xrandr --output HDMI-0 --off
+
