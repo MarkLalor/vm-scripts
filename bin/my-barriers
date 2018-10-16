@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+cd "$(dirname "$0")"
+barriers -c ../conf/barriers.conf -l ../log/barriers.log --enable-crypto -f -d INFO > /dev/null 2>&1 & disown
+echo $! > ../tmp/barriers.pid

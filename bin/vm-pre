@@ -1,6 +1,7 @@
+#!/usr/bin/env bash
+
 echo "Killing Barrier server if running on this computer"
-pkill -e -f "barriers"
+pkill -x "barriers"
 
-echo "Disabling output device with xrandr"
-xrandr --output HDMI-0 --off
-
+echo "Disabling main display with xrandr"
+xrandr --output DVI-I-1 --off

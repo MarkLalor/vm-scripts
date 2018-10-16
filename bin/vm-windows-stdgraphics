@@ -3,22 +3,17 @@
 echo "Running vfio-bind script..."
 vfio-bind 0000:02:00.0 0000:02:00.1
 
-eval "$(dirname $0)/vm-pre"
+# eval "$(dirname $0)/vm-pre"
 
 echo "Running QEMU..."
 cp /usr/share/edk2.git/ovmf-x64/OVMF_VARS-pure-efi.fd /tmp/my_vars.fd
 qemu-system-x86_64 \
 -enable-kvm \
--m 10240 \
+-m 4096 \
 -smp 6,sockets=1,cores=3,threads=2 \
 -cpu host,kvm=off \
--vga none \
+-vga std \
 -redir tcp:24800::24800 \
--usb -usbdevice host:1b1c:1b09 \
--usbdevice host:0d8c:0014 \
--usbdevice host:b58e:9e84 \
--usbdevice host:1b1c:1b0f \
--usbdevice host:046d:c332 \
 -device vfio-pci,host=02:00.0,multifunction=on \
 -device vfio-pci,host=02:00.1 \
 -drive if=pflash,format=raw,readonly,file=/usr/share/edk2.git/ovmf-x64/OVMF_CODE-pure-efi.fd \
@@ -26,4 +21,4 @@ qemu-system-x86_64 \
 -device virtio-scsi-pci,id=scsi \
 -drive file="$(dirname $0)/../images/windows.img",id=disk,format=qcow2,if=none,cache=writeback -device scsi-hd,drive=disk
 
-eval "$(dirname $0)/vm-post"
+# eval "$(dirname $0)/vm-post"
