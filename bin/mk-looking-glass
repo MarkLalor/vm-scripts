@@ -1,0 +1,3 @@
+touch /dev/shm/looking-glass
+chown mark:kvm /dev/shm/looking-glass
+chmod 660 /dev/shm/looking-glass
